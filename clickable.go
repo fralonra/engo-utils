@@ -14,7 +14,7 @@ const (
 type Clickable struct {
 	eventHandlers map[int]func()
 	IsHud         bool
-	Position      *engo.Point
+	Position      engo.Point
 	World         *ecs.World
 
 	ecs.BasicEntity
