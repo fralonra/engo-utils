@@ -10,7 +10,9 @@ import (
 type Texture struct {
 	Url      string
 	IsHud    bool
-	Position *engo.Point
+	Position engo.Point
+	Width    float32
+	Height   float32
 	World    *ecs.World
 
 	ecs.BasicEntity
@@ -23,13 +25,13 @@ func (t *Texture) Init() {
 
 	texture, err := common.LoadedSprite(t.Url)
 	if err != nil {
-		log.Println("Unable to load texture: " + err.Error())
+		log.Printf("Unable to load texture: %#v", err.Error())
 	}
-	t.Width = texture.Width()
-	t.Height = texture.Height()
-
-	if t.IsHud {
-		t.SetShader(common.HUDShader)
+	if t.Width == 0 {
+		t.Width = texture.Width()
+	}
+	if t.Height == 0 {
+		t.Height = texture.Height()
 	}
 
 	t.RenderComponent = common.RenderComponent{
@@ -40,14 +42,14 @@ func (t *Texture) Init() {
 		},
 	}
 
-	log.Printf("tex: pos: %#v", t.RenderComponent.Drawable)
-
 	t.SpaceComponent = common.SpaceComponent{
 		Width:  texture.Width(),
 		Height: texture.Height(),
+		Position: t.Position,
 	}
-	if t.Position != nil {
-		t.SpaceComponent.Position = *t.Position
+
+	if t.IsHud {
+		t.SetShader(common.HUDShader)
 	}
 
 	for _, system := range t.World.Systems() {
@@ -59,9 +61,9 @@ func (t *Texture) Init() {
 }
 
 func (t *Texture) Translate(x float32, y float32) {
-	t.Position = &engo.Point{
+	t.Position = engo.Point{
 		X: x,
 		Y: y,
 	}
-	t.SpaceComponent.Position = *t.Position
+	t.SpaceComponent.Position = t.Position
 }
