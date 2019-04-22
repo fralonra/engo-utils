@@ -43,8 +43,8 @@ func (t *Texture) Init() {
 	}
 
 	t.SpaceComponent = common.SpaceComponent{
-		Width:  texture.Width(),
-		Height: texture.Height(),
+		Width:    texture.Width(),
+		Height:   texture.Height(),
 		Position: t.Position,
 	}
 
