@@ -61,3 +61,7 @@ func (b *Button) Init() {
 	}
 	b.Clickable.Init()
 }
+
+func (b *Button) Dimensions() (float32, float32) {
+	return b.Clickable.SpaceComponent.Width, b.Clickable.SpaceComponent.Height
+}
