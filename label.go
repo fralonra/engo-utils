@@ -13,10 +13,6 @@ type Label struct {
 	Text     string
 	World    *ecs.World
 
-	totalWidth    int
-	totalHeight   int
-	totalLineSize int
-
 	ecs.BasicEntity
 	common.RenderComponent
 	common.SpaceComponent
@@ -25,17 +21,14 @@ type Label struct {
 func (l *Label) Init() {
 	l.BasicEntity = ecs.NewBasic()
 
-	if l.totalWidth == 0 || l.totalHeight == 0 || l.totalLineSize == 0 {
-		l.totalWidth, l.totalHeight, l.totalLineSize = l.TextDimensions()
-	}
-
+	width, height, _ := l.TextDimensions()
 	l.RenderComponent.Drawable = common.Text{
 		Font: l.Font,
 		Text: l.Text,
 	}
 	l.SpaceComponent = common.SpaceComponent{
-		Width:    float32(l.totalWidth),
-		Height:   float32(l.totalHeight),
+		Width:    float32(width),
+		Height:   float32(height),
 		Position: l.Position,
 	}
 
@@ -52,9 +45,6 @@ func (l *Label) Init() {
 }
 
 func (l *Label) TextDimensions() (int, int, int) {
-	if l.totalWidth != 0 && l.totalHeight != 0 && l.totalLineSize != 0 {
-		return l.totalWidth, l.totalHeight, l.totalLineSize
-	}
 	return l.Font.TextDimensions(l.Text)
 }
 

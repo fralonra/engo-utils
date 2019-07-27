@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	radioBoxSize = 20
+	radioBoxSize   = 20
 	radioInnerSize = 12
 
 	eventChange = iota
@@ -53,7 +53,7 @@ func (r *radioBox) Init() {
 
 	r.inner.RenderComponent = common.RenderComponent{
 		Drawable: common.Circle{},
-		Color: color.Black,
+		Color:    color.Black,
 	}
 	radioInnerOffset := float32((radioBoxSize - radioInnerSize) / 2)
 	r.inner.SpaceComponent = common.SpaceComponent{
@@ -95,14 +95,14 @@ func (r *radioBox) toggle(isChecked bool) {
 type Radio struct {
 	Clickable
 	Label
-	index int
+	index     int
 	isChecked bool
-	isHud    bool
-	Position engo.Point
-	World    *ecs.World
+	isHud     bool
+	Position  engo.Point
+	World     *ecs.World
 
 	radioBox
-	group    *RadioGroup
+	group *RadioGroup
 }
 
 func (r *Radio) Init() {
