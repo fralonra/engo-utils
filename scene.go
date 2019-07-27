@@ -1,8 +1,9 @@
 package utils
 
 import (
-	"github.com/EngoEngine/engo"
 	"log"
+
+	"github.com/EngoEngine/engo"
 )
 
 type Scene struct {

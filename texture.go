@@ -1,10 +1,11 @@
 package utils
 
 import (
+	"log"
+
 	"github.com/EngoEngine/ecs"
 	"github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
-	"log"
 )
 
 type Texture struct {

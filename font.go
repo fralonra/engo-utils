@@ -1,8 +1,9 @@
 package utils
 
 import (
-	"github.com/EngoEngine/engo/common"
 	"image/color"
+
+	"github.com/EngoEngine/engo/common"
 )
 
 type Font struct {

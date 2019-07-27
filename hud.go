@@ -1,11 +1,7 @@
 package utils
 
 import (
-	// "fmt"
-	// "image/color"
-
 	"github.com/EngoEngine/ecs"
-	// "github.com/EngoEngine/engo"
 	"github.com/EngoEngine/engo/common"
 )
 
